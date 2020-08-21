@@ -10,6 +10,5 @@ class Post(models.Model):
     author = models.ForeignKey(to=User, on_delete=models.CASCADE)
     date_posted = models.DateTimeField(default=timezone.now)
     content = models.TextField()
-
     # date_posted = models.DateTimeField(auto_now=True) # Always update the date even if it's updated that's not required
     # date_posted = models.DateTimeField(auto_now_add=True)

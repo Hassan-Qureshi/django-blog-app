@@ -18,4 +18,5 @@ def register(request):
 
 
 def login(request):
-    pass
+    if request.method == 'POST':
+        pass
