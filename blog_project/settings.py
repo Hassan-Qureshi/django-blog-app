@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import django_heroku
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -129,4 +130,6 @@ LOGIN_REDIRECT_URL = 'blog-home'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-ALLOWED_HOSTS = ['simorgh-blog.herokuapp.com',]
+ALLOWED_HOSTS = ['simorgh-blog.herokuapp.com', '127.0.0.1']
+
+django_heroku.settings(locals())
