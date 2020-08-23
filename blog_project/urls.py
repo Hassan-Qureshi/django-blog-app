@@ -19,7 +19,6 @@ from blog import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.welcome),
     path('', include('blog.urls')),
     path('auth/', include('users.urls')),
 ]
