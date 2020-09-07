@@ -1,5 +1,4 @@
 {% load static %}
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -35,13 +34,12 @@
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
               {% if user.is_authenticated %}
-
-                Welcome {{ user.get_username }}
-              <a class="nav-item nav-link" href="{% url 'log-out' %}">Logout</a>
+                <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+                <a class="nav-item nav-link" href="{% url 'log-out' %}">Logout</a>
               {% else %}
-              <a class="nav-item nav-link" href="{% url 'log-in' %}">Login</a>
-              <a class="nav-item nav-link" href="{% url 'sign-up' %}">Register</a>
-                {% endif %}
+                <a class="nav-item nav-link" href="{% url 'log-in' %}">Login</a>
+                <a class="nav-item nav-link" href="{% url 'sign-up' %}">Register</a>
+              {% endif %}
             </div>
           </div>
         </div>
