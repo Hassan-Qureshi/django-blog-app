@@ -17,5 +17,6 @@ def create_profile(sender, instance, created, **kwargs):
 
 
 @receiver(signal=post_save, sender=User)
-def save_user(sender, instance, **kwargs):
-    instance.profile.save()
+def save_user(sender, instance, created, **kwargs):
+    if not created:
+        instance.profile.save()
