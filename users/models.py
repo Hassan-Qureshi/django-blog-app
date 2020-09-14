@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 # Reduce Image Size
 from PIL import Image
 
+
 class Profile(models.Model):
 
     user = models.OneToOneField(to=User, on_delete=models.CASCADE)
@@ -13,8 +14,8 @@ class Profile(models.Model):
     Overriding save method. It runs after our model get saved. Overriding just to add some additional functionality
     Functionality Added: It is to reduce the size of image saved
     """
-    def save(self):
-        super().save()
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
 
         image = Image.open(self.image.path)
         if image.height > 300 or image.width > 300:
