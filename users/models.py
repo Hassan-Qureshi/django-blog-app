@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 # Reduce Image Size
 from PIL import Image
 
-
+User.objects.all()
 class Profile(models.Model):
 
     user = models.OneToOneField(to=User, on_delete=models.CASCADE)

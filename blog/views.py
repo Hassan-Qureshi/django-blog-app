@@ -9,7 +9,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
-
+from django.core.paginator import Paginator
 
 def home(request):
     context = {
@@ -27,7 +27,9 @@ class PostListView(ListView):
     # By default, ListView uses `object_list` as variable in template on which we are looping in blog/home.html
     context_object_name = 'data'
     ordering = ['-date_posted']
-
+    # Add pagination
+    paginate_by = 2
+ 
 
 class PostDetailView(DetailView):
     model = Post
