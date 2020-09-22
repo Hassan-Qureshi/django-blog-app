@@ -10,7 +10,6 @@ from django.views.generic import (
     DeleteView
 )
 from django.core.paginator import Paginator
-
 def home(request):
     context = {
         'data': Post.objects.all()
@@ -28,8 +27,8 @@ class PostListView(ListView):
     context_object_name = 'data'
     ordering = ['-date_posted']
     # Add pagination
-    paginate_by = 2
- 
+    paginate_by = 5
+
 
 class PostDetailView(DetailView):
     model = Post
