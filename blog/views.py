@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Post
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -9,6 +9,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
+from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 def home(request):
     context = {
@@ -28,6 +29,23 @@ class PostListView(ListView):
     ordering = ['-date_posted']
     # Add pagination
     paginate_by = 5
+
+
+class UsersPostListView(ListView):
+    """
+    Shows List of posts specific to that paticular user
+    """
+    model = Post
+    template_name = 'blog/user_posts.html'
+    # We need to set the context_object_name because we are using 'data' in our template and looping over it
+    # By default, ListView uses `object_list` as variable in template on which we are looping in blog/home.html
+    context_object_name = 'user_posts'
+    # Add pagination
+    paginate_by = 5
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Post.objects.filter(author=user).order_by('-date_posted')
 
 
 class PostDetailView(DetailView):
